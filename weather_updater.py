@@ -34,7 +34,7 @@ LONGITUDE = 4.8422
 # Set this as a secret in GitHub Actions → available as os.environ["GH_TOKEN"]
 import os
 GITHUB_TOKEN  = os.environ.get("GH_TOKEN", "YOUR_TOKEN_HERE")
-GITHUB_REPO   = "yourname/vrc-weather"   # e.g. "alice/vrc-world"
+GITHUB_REPO   = "Catalyss/WeatherTesterThingy"   # e.g. "alice/vrc-world"
 GITHUB_FILE   = "weather.txt"            # path inside the repo
 GITHUB_BRANCH = "main"
 
