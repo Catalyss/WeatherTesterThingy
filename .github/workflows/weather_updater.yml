@@ -1,0 +1,32 @@
+# .github/workflows/weather_updater.yml
+# Place this file in your GitHub repo at the path above.
+# It runs the weather updater every 10 minutes and commits weather.txt back.
+
+name: Update VRC Weather
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes
+  workflow_dispatch:          # allow manual trigger from Actions UI
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write         # needed to push the commit
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests PyGithub
+
+      - name: Run updater
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python weather_updater.py
